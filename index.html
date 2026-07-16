@@ -3,22 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>เว็บโฮสติ้งบน Alibaba Cloud | Computer Union</title>
+<title>Web Hosting on Alibaba Cloud | Computer Union</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --brand:#FF6A00;          /* Alibaba Cloud orange */
-    --brand-strong:#E85D00;
-    --brand-soft:#FFF1E6;
-    --ink:#0E1B2E;            /* deep trust navy */
-    --ink-soft:#26374F;
-    --bg:#F3F6FA;             /* cool cloud light */
-    --surface:#FFFFFF;
-    --muted:#63707F;
-    --line:#E4E9F0;
-    --ok:#12A166;            /* included checks */
+    --brand:#FF6A00; --brand-strong:#E85D00; --brand-soft:#FFF1E6;
+    --ink:#0E1B2E; --ink-soft:#26374F; --bg:#F3F6FA; --surface:#FFFFFF;
+    --muted:#63707F; --line:#E4E9F0; --ok:#12A166;
     --shadow:0 18px 45px -20px rgba(14,27,46,.28);
     --shadow-sm:0 8px 24px -14px rgba(14,27,46,.30);
     --r:18px;
@@ -27,147 +20,164 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:var(--body);color:var(--ink);background:var(--bg);
-    line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
+  body{font-family:var(--body);color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   .wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 22px}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%}
 
-  .eyebrow{
-    font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--brand-strong);margin-bottom:14px;
-  }
+  /* i18n: Thai default, English when body.lang-en */
+  .en{display:none}
+  .lang-en .th{display:none}
+  .lang-en .en{display:inline}
+
+  .eyebrow{font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-strong);margin-bottom:14px}
   h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3.6vw,40px);line-height:1.18;letter-spacing:-.01em}
-  .lead{color:var(--ink-soft);font-size:17px;max-width:620px;margin-top:14px}
+  .lead{color:var(--ink-soft);font-size:17px;max-width:640px;margin-top:14px}
 
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:600;
-    font-size:15px;padding:13px 24px;border-radius:999px;border:1px solid transparent;
-    cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
-  }
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:600;font-size:15px;padding:13px 24px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s}
   .btn-primary{background:var(--brand);color:#fff;box-shadow:0 10px 26px -10px rgba(255,106,0,.7)}
   .btn-primary:hover{background:var(--brand-strong);transform:translateY(-2px)}
-  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);background:#fff}
+  .btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
   .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
   .btn-light{background:#fff;color:var(--brand-strong)}
   .btn-light:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 
-  /* ---------- Header ---------- */
+  /* Header */
   header{position:sticky;top:0;z-index:50;background:rgba(243,246,250,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
   .brand{display:flex;align-items:center;gap:11px}
   .brand .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),#FF9A45);display:grid;place-items:center;color:#fff;font-family:var(--disp);font-weight:700;font-size:17px}
   .brand .who{font-family:var(--disp);font-weight:600;font-size:16px;line-height:1.1}
-  .brand .who small{display:block;font-family:var(--body);font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.02em}
-  .nav-links{display:flex;align-items:center;gap:26px}
+  .brand .who small{display:block;font-family:var(--body);font-weight:400;font-size:11px;color:var(--muted)}
+  .nav-links{display:flex;align-items:center;gap:24px}
   .nav-links a{font-size:14.5px;color:var(--ink-soft);font-weight:500}
   .nav-links a:hover{color:var(--brand-strong)}
-  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-cta{display:flex;align-items:center;gap:12px}
+  .lang{font-family:var(--disp);font-weight:600;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;color:var(--ink)}
+  .lang:hover{border-color:var(--brand)}
   .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px}
   .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;border-radius:2px}
 
-  /* ---------- Hero ---------- */
-  .hero{position:relative;padding:72px 0 60px}
-  .hero::before{content:"";position:absolute;top:-120px;right:-160px;width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle at center,rgba(255,106,0,.16),transparent 62%);z-index:0}
+  /* Hero */
+  .hero{position:relative;padding:64px 0 54px}
+  .hero::before{content:"";position:absolute;top:-120px;right:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle at center,rgba(255,106,0,.16),transparent 62%);z-index:0}
   .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
-  .hero .kicker{display:inline-flex;align-items:center;gap:8px;background:var(--brand-soft);color:var(--brand-strong);
-    font-family:var(--disp);font-weight:600;font-size:13px;padding:7px 14px;border-radius:999px;margin-bottom:20px}
-  .hero .kicker b{width:7px;height:7px;border-radius:50%;background:var(--brand)}
-  .hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(32px,4.6vw,52px);line-height:1.1;letter-spacing:-.015em}
-  .hero p.sub{font-size:18px;color:var(--ink-soft);margin-top:20px;max-width:540px}
-  .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
-  .trust{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:34px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:var(--brand-soft);color:var(--brand-strong);font-family:var(--disp);font-weight:600;font-size:12.5px;padding:7px 14px;border-radius:999px;margin-bottom:20px}
+  .kicker b{width:7px;height:7px;border-radius:50%;background:var(--brand)}
+  .hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(31px,4.5vw,50px);line-height:1.1;letter-spacing:-.015em}
+  .hero p.sub{font-size:18px;color:var(--ink-soft);margin-top:20px;max-width:545px}
+  .credit{margin-top:16px;font-size:13.5px;color:var(--muted)}
+  .credit b{color:var(--ink-soft);font-weight:600}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+  .trust{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:30px}
   .trust span{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink-soft);font-weight:500}
   .trust svg{color:var(--ok);flex:none}
 
-  /* hero visual: everything-in-one-pack card */
   .packbox{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow);transform:rotate(-1.4deg)}
   .packbox h3{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--ink);margin-bottom:4px}
   .packbox .cap{font-size:12.5px;color:var(--muted);margin-bottom:18px}
   .chip-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
   .chip{display:flex;align-items:center;gap:10px;background:#F7F9FC;border:1px solid var(--line);border-radius:12px;padding:11px 12px}
   .chip .ic{width:30px;height:30px;border-radius:8px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;flex:none}
-  .chip small{font-size:13px;font-weight:600;color:var(--ink-soft);line-height:1.25}
-  .float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);
-    display:flex;align-items:center;gap:9px;padding:10px 14px;font-family:var(--disp);font-weight:600;font-size:13.5px}
+  .chip small{font-size:12.5px;font-weight:600;color:var(--ink-soft);line-height:1.2}
+  .float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:9px;padding:10px 14px;font-family:var(--disp);font-weight:600;font-size:13px}
   .float.a{top:-22px;right:16px;color:var(--ok)}
   .float.b{bottom:-20px;left:-14px;color:var(--brand-strong)}
   .float .dot{width:9px;height:9px;border-radius:50%;background:currentColor}
 
-  /* ---------- generic section ---------- */
-  section.sec{padding:84px 0}
-  .sec-head{max-width:680px}
+  section.sec{padding:82px 0}
+  .sec-head{max-width:700px}
   .sec-head.center{margin:0 auto;text-align:center}
 
-  /* ---------- included ---------- */
+  /* Included */
   #included{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
   .inc{background:#F7F9FC;border:1px solid var(--line);border-radius:var(--r);padding:22px}
   .inc .ic{width:44px;height:44px;border-radius:12px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;margin-bottom:15px}
   .inc h4{font-family:var(--disp);font-weight:600;font-size:16.5px;margin-bottom:6px}
-  .inc p{font-size:14.5px;color:var(--muted);line-height:1.55}
+  .inc p{font-size:14px;color:var(--muted);line-height:1.55}
 
-  /* ---------- packages ---------- */
+  /* Packages */
   .pk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px;align-items:stretch}
-  .pk{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
-    border-radius:20px;padding:26px 22px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease}
+  .pk{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 22px;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s}
   .pk:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
   .pk.hot{border:2px solid var(--brand);box-shadow:0 24px 50px -22px rgba(255,106,0,.45)}
-  .pk .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;
-    font-family:var(--disp);font-weight:600;font-size:12px;padding:6px 15px;border-radius:999px;white-space:nowrap}
+  .pk .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;font-family:var(--disp);font-weight:600;font-size:12px;padding:6px 15px;border-radius:999px;white-space:nowrap}
   .pk .pk-name{font-family:var(--disp);font-weight:700;font-size:21px}
-  .pk .pk-for{font-size:13.5px;color:var(--muted);margin-top:5px;min-height:40px}
-  .pk .price{margin:18px 0 4px;display:flex;align-items:baseline;gap:4px}
-  .pk .price .num{font-family:var(--disp);font-weight:700;font-size:32px;color:var(--ink)}
+  .pk .pk-for{font-size:13.5px;color:var(--muted);margin-top:5px;min-height:42px}
+  .pk .price{margin:16px 0 4px;display:flex;align-items:baseline;gap:4px}
+  .pk .price .num{font-family:var(--disp);font-weight:700;font-size:31px;color:var(--ink)}
   .pk .price .cur{font-family:var(--disp);font-weight:600;font-size:17px;color:var(--ink)}
   .pk .price .per{font-size:13px;color:var(--muted)}
-  .pk .price.quote .num{font-size:22px}
-  .pk ul{list-style:none;margin:18px 0 22px;display:flex;flex-direction:column;gap:11px;flex:1}
-  .pk ul li{display:flex;gap:9px;font-size:14px;color:var(--ink-soft);line-height:1.45}
-  .pk ul li svg{color:var(--ok);flex:none;margin-top:3px}
-  .pk .btn{width:100%;justify-content:center}
+  .pk .price.quote .num{font-size:21px}
+  .pk .flist{list-style:none;margin:16px 0 8px;display:flex;flex-direction:column;gap:10px}
+  .pk .flist li{display:flex;gap:9px;font-size:14px;color:var(--ink-soft);line-height:1.45}
+  .pk .flist li svg{color:var(--ok);flex:none;margin-top:3px}
+  .pk .btn{width:100%;justify-content:center;margin-top:auto}
   .pk.hot .btn-ghost{background:var(--brand);color:#fff;border-color:var(--brand)}
   .pk.hot .btn-ghost:hover{background:var(--brand-strong)}
-  .note{font-size:12.5px;color:var(--muted);margin-top:22px;text-align:center}
 
-  /* ---------- addons ---------- */
+  /* spec accordion */
+  .spec{margin:6px 0 18px;border-top:1px dashed var(--line)}
+  .spec summary{font-family:var(--disp);font-weight:600;font-size:13px;color:var(--brand-strong);padding:12px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  .spec summary::-webkit-details-marker{display:none}
+  .spec summary .chev{transition:transform .2s;flex:none}
+  .spec[open] summary .chev{transform:rotate(180deg)}
+  .spec table{width:100%;border-collapse:collapse;font-size:12px;margin:2px 0}
+  .spec th,.spec td{text-align:center;padding:6px 4px;border-bottom:1px solid var(--line)}
+  .spec th{font-family:var(--disp);font-weight:600;color:var(--ink);font-size:11.5px}
+  .spec td:first-child,.spec th:first-child{text-align:left;color:var(--muted);white-space:nowrap}
+  .spec .val{color:var(--ink-soft);font-weight:500}
+  .spec .prow td{font-family:var(--disp);font-weight:700;color:var(--ink);padding-top:9px}
+  .spec .win{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
+  .note{font-size:12.5px;color:var(--muted);margin-top:24px;text-align:center;line-height:1.6}
+
+  /* Comparison */
+  #compare{background:var(--surface);border-top:1px solid var(--line)}
+  .cmp{margin-top:42px;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .cmp table{width:100%;border-collapse:collapse}
+  .cmp th,.cmp td{padding:15px 16px;border-bottom:1px solid var(--line);font-size:14.5px;text-align:center}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp th{font-family:var(--disp);font-weight:700;background:#F7F9FC}
+  .cmp thead th{font-size:15px}
+  .cmp td:first-child,.cmp th:first-child{text-align:left;color:var(--ink-soft)}
+  .cmp .col-us{background:var(--brand-soft)}
+  .cmp th.col-us{color:var(--brand-strong)}
+  .cmp .us svg{color:var(--ok)}
+  .cmp .them{color:var(--muted);font-size:13.5px}
+
+  /* Addons */
   #addons{background:var(--ink);color:#fff}
   #addons .eyebrow{color:#FFB27A}
   #addons h2.title{color:#fff}
   #addons .lead{color:#B9C6D6}
   .addon-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-  .addon{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
-    border-radius:14px;padding:14px 18px;font-size:14.5px;font-weight:500}
+  .addon{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 18px;font-size:14.5px;font-weight:500}
   .addon .ic{width:32px;height:32px;border-radius:9px;background:rgba(255,106,0,.2);color:#FFB27A;display:grid;place-items:center;flex:none}
   .addon.star{background:rgba(255,106,0,.16);border-color:rgba(255,106,0,.5)}
-  .addon.star .badge{font-family:var(--disp);font-size:11px;font-weight:600;background:var(--brand);color:#fff;padding:2px 8px;border-radius:999px;margin-left:2px}
+  .addon .badge{font-family:var(--disp);font-size:11px;font-weight:600;background:var(--brand);color:#fff;padding:2px 8px;border-radius:999px;margin-left:2px}
 
-  /* ---------- why ---------- */
+  /* Why */
   .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px}
   .why{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px}
   .why .n{font-family:var(--disp);font-weight:700;font-size:15px;color:var(--brand-strong);letter-spacing:.05em}
   .why h4{font-family:var(--disp);font-weight:600;font-size:18px;margin:14px 0 8px}
-  .why p{font-size:14.5px;color:var(--muted);line-height:1.6}
+  .why p{font-size:14px;color:var(--muted);line-height:1.6}
 
-  /* ---------- faq ---------- */
+  /* FAQ */
   #faq{background:var(--surface);border-top:1px solid var(--line)}
   .faq-list{max-width:800px;margin:40px auto 0}
-  details{border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin-bottom:12px;background:#F9FBFD}
-  details[open]{background:#fff;border-color:#D9E0EA}
-  summary{list-style:none;cursor:pointer;font-family:var(--disp);font-weight:600;font-size:16px;padding:16px 0;
-    display:flex;justify-content:space-between;align-items:center;gap:14px}
-  summary::-webkit-details-marker{display:none}
-  summary .plus{width:24px;height:24px;flex:none;position:relative;transition:transform .2s ease}
-  summary .plus::before,summary .plus::after{content:"";position:absolute;background:var(--brand);border-radius:2px}
-  summary .plus::before{width:14px;height:2px;top:11px;left:5px}
-  summary .plus::after{width:2px;height:14px;top:5px;left:11px}
-  details[open] summary .plus{transform:rotate(45deg)}
-  details p{padding:0 0 18px;color:var(--ink-soft);font-size:15px;line-height:1.65}
+  .faq{border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin-bottom:12px;background:#F9FBFD}
+  .faq[open]{background:#fff;border-color:#D9E0EA}
+  .faq summary{list-style:none;cursor:pointer;font-family:var(--disp);font-weight:600;font-size:16px;padding:16px 0;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq .plus{width:24px;height:24px;flex:none;position:relative;transition:transform .2s}
+  .faq .plus::before,.faq .plus::after{content:"";position:absolute;background:var(--brand);border-radius:2px}
+  .faq .plus::before{width:14px;height:2px;top:11px;left:5px}
+  .faq .plus::after{width:2px;height:14px;top:5px;left:11px}
+  .faq[open] .plus{transform:rotate(45deg)}
+  .faq p{padding:0 0 18px;color:var(--ink-soft);font-size:15px;line-height:1.65}
 
-  /* ---------- CTA band ---------- */
+  /* CTA band */
   .cta-band{background:linear-gradient(120deg,var(--brand),#FF9440);color:#fff;text-align:center;padding:70px 0}
   .cta-band h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3.4vw,38px)}
   .cta-band p{font-size:17px;margin-top:12px;opacity:.95}
@@ -175,35 +185,30 @@
   .contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin-top:28px;font-size:14.5px;font-weight:500}
   .contact-row span{display:inline-flex;align-items:center;gap:8px;opacity:.96}
 
-  /* ---------- footer ---------- */
+  /* Footer */
   footer{background:var(--ink);color:#9FB0C2;padding:40px 0 34px;font-size:13.5px}
   .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:center}
   .foot .brand .who{color:#fff}
   .foot .brand .who small{color:#8394A8}
   .foot .fine{max-width:560px;line-height:1.6}
 
-  /* ---------- reveal ---------- */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
   .reveal.vis{opacity:1;transform:none}
 
-  /* ---------- responsive ---------- */
   @media(max-width:960px){
     .hero .wrap{grid-template-columns:1fr;gap:44px}
-    .inc-grid{grid-template-columns:1fr 1fr}
-    .pk-grid{grid-template-columns:1fr 1fr}
-    .why-grid{grid-template-columns:1fr 1fr}
+    .inc-grid,.pk-grid,.why-grid{grid-template-columns:1fr 1fr}
   }
   @media(max-width:640px){
     .nav-links{display:none}
-    .nav-cta .btn-ghost{display:none}
     .menu-btn{display:block}
-    .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;
-      background:#fff;border-bottom:1px solid var(--line);padding:8px 22px 16px}
+    .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:8px 22px 16px}
     .nav-links.open a{padding:12px 0;border-bottom:1px solid var(--line)}
-    section.sec{padding:60px 0}
+    section.sec{padding:58px 0}
     .inc-grid,.pk-grid,.why-grid{grid-template-columns:1fr}
     .packbox{transform:none}
-    .float.b{left:6px}
+    .cmp{overflow-x:auto}
+    .cmp table{min-width:520px}
   }
   @media(prefers-reduced-motion:reduce){
     *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
@@ -218,18 +223,18 @@
   <div class="wrap nav">
     <a class="brand" href="#top">
       <div class="mark">CU</div>
-      <div class="who">Computer Union<small>พันธมิตรผู้ให้บริการ Alibaba Cloud</small></div>
+      <div class="who">Computer Union<small><span class="th">พันธมิตรผู้ให้บริการ Alibaba Cloud</span><span class="en">Alibaba Cloud Distributor</span></small></div>
     </a>
     <nav class="nav-links" id="navlinks">
-      <a href="#included">มีอะไรให้บ้าง</a>
-      <a href="#packages">แพ็กเกจ</a>
-      <a href="#why">ทำไมต้องเรา</a>
-      <a href="#faq">คำถามที่พบบ่อย</a>
+      <a href="#included"><span class="th">มีอะไรให้บ้าง</span><span class="en">What's included</span></a>
+      <a href="#packages"><span class="th">แพ็กเกจ</span><span class="en">Packages</span></a>
+      <a href="#compare"><span class="th">ทำไมคุ้มกว่า</span><span class="en">Why it's better</span></a>
+      <a href="#faq"><span class="th">คำถามที่พบบ่อย</span><span class="en">FAQ</span></a>
     </nav>
     <div class="nav-cta">
-      <a href="#packages" class="btn btn-ghost">ดูแพ็กเกจ</a>
-      <a href="#contact" class="btn btn-primary">ปรึกษาฟรี</a>
-      <button class="menu-btn" id="menuBtn" aria-label="เมนู"><span></span><span></span><span></span></button>
+      <button class="lang" id="lang"><span class="th">EN</span><span class="en">ไทย</span></button>
+      <a href="#contact" class="btn btn-primary"><span class="th">ปรึกษาฟรี</span><span class="en">Free consult</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
@@ -238,35 +243,36 @@
 <section class="hero" id="top">
   <div class="wrap">
     <div class="reveal">
-      <span class="kicker"><b></b> เว็บโฮสติ้งบน Alibaba Cloud โดย Computer Union</span>
-      <h1>เปิดเว็บของคุณ<br>แล้วปล่อยเรื่องยากให้เราดูแล</h1>
-      <p class="sub">เลือกแพ็กที่ใช่ จ่ายค่าโฮสอย่างเดียว ที่เหลือทั้งความเร็ว ความปลอดภัย และการย้ายเว็บ ทีม Computer Union จัดให้ครบ ข้อมูลอยู่ใน Data Center ในไทย พร้อมออนไลน์ใน 7 วัน</p>
+      <span class="kicker"><b></b> <span class="th">เว็บโฮสติ้งบน Alibaba Cloud โดย Computer Union</span><span class="en">Web Hosting on Alibaba Cloud by Computer Union</span></span>
+      <h1><span class="th">เปิดเว็บของคุณ<br>แล้วปล่อยเรื่องยากให้เราดูแล</span><span class="en">Launch your site.<br>Leave the hard parts to us.</span></h1>
+      <p class="sub"><span class="th">เลือกแพ็กที่ใช่ จ่ายค่าโฮสอย่างเดียว ที่เหลือทั้งความเร็ว ความปลอดภัย และการย้ายเว็บ ทีมเราจัดให้ครบ ข้อมูลอยู่ใน Data Center ในไทย พร้อมออนไลน์ใน 7 วัน</span><span class="en">Pick the plan that fits, pay for hosting only. Speed, security and migration are all handled by our team. Your data stays in a Thailand data center, and you go live in 7 days.</span></p>
+      <p class="credit"><span class="th">โดย <b>Computer Union</b> ผู้จัดจำหน่าย IBM อันดับ 1 ของไทย พร้อมทีมเทคนิคในประเทศ</span><span class="en">Backed by <b>Computer Union</b>, Thailand's #1 IBM distributor, with a local technical team.</span></p>
       <div class="cta-row">
-        <a href="#packages" class="btn btn-primary">ดูแพ็กเกจทั้งหมด</a>
-        <a href="#contact" class="btn btn-ghost">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</a>
+        <a href="#packages" class="btn btn-primary"><span class="th">ดูแพ็กเกจทั้งหมด</span><span class="en">See all packages</span></a>
+        <a href="#contact" class="btn btn-ghost"><span class="th">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</span><span class="en">Free consultation</span></a>
       </div>
       <div class="trust">
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> Data Center ในไทย</span>
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> รองรับ PDPA</span>
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ออกใบกำกับภาษี</span>
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ซัพพอร์ตภาษาไทย</span>
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> การันตี uptime 99.9%</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">Data Center ในไทย</span><span class="en">Data center in Thailand</span></span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">รองรับ PDPA</span><span class="en">PDPA ready</span></span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ออกใบกำกับภาษี</span><span class="en">Thai tax invoice</span></span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ซัพพอร์ตภาษาไทย</span><span class="en">Local support</span></span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">การันตี uptime 99.9%</span><span class="en">99.9% uptime</span></span>
       </div>
     </div>
 
     <div class="reveal">
       <div class="packbox">
-        <div class="float a"><span class="dot"></span> https ปลอดภัย</div>
+        <div class="float a"><span class="dot"></span> <span class="th">https ปลอดภัย</span><span class="en">https secured</span></div>
         <div class="float b"><span class="dot"></span> uptime 99.9%</div>
-        <h3>ในทุกแพ็ก มีให้ครบ</h3>
-        <p class="cap">ไม่ต้องซื้อเพิ่มทีละอย่าง</p>
+        <h3><span class="th">ในทุกแพ็ก มีให้ครบ</span><span class="en">In every plan</span></h3>
+        <p class="cap"><span class="th">ไม่ต้องซื้อเพิ่มทีละอย่าง</span><span class="en">No add-ons required</span></p>
         <div class="chip-grid">
-          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><small>ฟรี SSL (https)</small></div>
-          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></span><small>CDN เว็บโหลดไว</small></div>
-          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg></span><small>WAF + Anti-DDoS</small></div>
-          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></span><small>สำรองข้อมูลทุกวัน</small></div>
-          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h12M12 6l6 6-6 6"/><path d="M20 4v16"/></svg></span><small>ย้ายเว็บให้ฟรี</small></div>
-          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><small>ซัพพอร์ตไทย</small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><small><span class="th">ฟรี SSL (https)</span><span class="en">Free SSL</span></small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></span><small><span class="th">CDN เว็บโหลดไว</span><span class="en">CDN speed</span></small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg></span><small><span class="th">WAF + Anti-DDoS</span><span class="en">WAF + Anti-DDoS</span></small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></span><small><span class="th">สำรองข้อมูลทุกวัน</span><span class="en">Daily backup</span></small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h12M12 6l6 6-6 6"/><path d="M20 4v16"/></svg></span><small><span class="th">ย้ายเว็บให้ฟรี</span><span class="en">Free migration</span></small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><small><span class="th">ซัพพอร์ตไทย</span><span class="en">Thai support</span></small></div>
         </div>
       </div>
     </div>
@@ -277,55 +283,55 @@
 <section class="sec" id="included">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">ครบในแพ็กเดียว</div>
-      <h2 class="title">จ่ายค่าโฮสอย่างเดียว ที่เหลือเราจัดให้ครบ</h2>
-      <p class="lead">โฮสติ้งทั่วไปให้คุณแค่เครื่องเปล่า แล้วค่อยคิดเงินเพิ่มทีละอย่าง ของเรารวมทุกอย่างที่เว็บหนึ่งเว็บต้องใช้จริงมาให้ในราคาเดียว</p>
+      <div class="eyebrow"><span class="th">ครบในแพ็กเดียว</span><span class="en">All in one plan</span></div>
+      <h2 class="title"><span class="th">จ่ายค่าโฮสอย่างเดียว ที่เหลือเราจัดให้ครบ</span><span class="en">Pay for hosting only. We include the rest.</span></h2>
+      <p class="lead"><span class="th">โฮสติ้งทั่วไปให้คุณแค่เครื่องเปล่า แล้วค่อยคิดเงินเพิ่มทีละอย่าง ของเรารวมทุกอย่างที่เว็บหนึ่งเว็บต้องใช้จริงมาให้ในราคาเดียว</span><span class="en">Typical hosts hand you a bare server, then charge for every extra one by one. We bundle everything a real website needs into a single price.</span></p>
     </div>
     <div class="inc-grid">
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
-        <h4>ฟรี SSL (https)</h4>
-        <p>เว็บขึ้นกุญแจ https ให้ลูกค้าเชื่อใจตั้งแต่เปิดหน้าแรก ไม่ต้องซื้อใบรับรองเพิ่ม</p>
+        <h4><span class="th">ฟรี SSL (https)</span><span class="en">Free SSL (https)</span></h4>
+        <p><span class="th">เว็บขึ้นกุญแจ https ให้ลูกค้าเชื่อใจตั้งแต่เปิดหน้าแรก ไม่ต้องซื้อใบรับรองเพิ่ม</span><span class="en">Your site shows the https padlock from day one, so visitors trust it. No certificate to buy.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></div>
-        <h4>CDN เว็บโหลดไว</h4>
-        <p>กระจายเว็บไว้หลายจุด ลูกค้าไม่ว่าอยู่ที่ไหนก็เปิดหน้าเว็บได้เร็ว ไม่ต้องรอโหลด</p>
+        <h4><span class="th">CDN เว็บโหลดไว</span><span class="en">CDN for speed</span></h4>
+        <p><span class="th">กระจายเว็บไว้หลายจุด ลูกค้าไม่ว่าอยู่ที่ไหนก็เปิดหน้าเว็บได้เร็ว ไม่ต้องรอโหลด</span><span class="en">Content is cached across many points so pages load fast for every visitor, wherever they are.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg></div>
-        <h4>WAF + Anti-DDoS</h4>
-        <p>มีระบบกันแฮกเกอร์และการโจมตีถล่มเว็บให้ในตัว เว็บไม่ล่มง่ายและปลอดภัยกว่า</p>
+        <h4><span class="th">WAF + Anti-DDoS</span><span class="en">WAF + Anti-DDoS</span></h4>
+        <p><span class="th">มีระบบกันแฮกเกอร์และการโจมตีถล่มเว็บให้ในตัว เว็บไม่ล่มง่ายและปลอดภัยกว่า</span><span class="en">Built-in protection against hackers and attacks that try to take a site down. Safer and steadier.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></div>
-        <h4>สำรองข้อมูลอัตโนมัติ</h4>
-        <p>ระบบสำรองข้อมูลให้ทุกวันโดยอัตโนมัติ ถ้าเว็บมีปัญหาก็กู้คืนกลับมาได้</p>
+        <h4><span class="th">สำรองข้อมูลอัตโนมัติ</span><span class="en">Automatic backup</span></h4>
+        <p><span class="th">ระบบสำรองข้อมูลให้ทุกวันโดยอัตโนมัติ ถ้าเว็บมีปัญหาก็กู้คืนกลับมาได้</span><span class="en">Your site is backed up automatically every day, so it can be restored if anything goes wrong.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 12h12M12 6l6 6-6 6"/><path d="M20 4v16"/></svg></div>
-        <h4>ย้ายเว็บเก่าให้ฟรี</h4>
-        <p>มีเว็บอยู่แล้วที่อื่น ทีมเทคนิคเราย้ายมาให้ฟรี คุณไม่ต้องลงมือทำเองเลย</p>
+        <h4><span class="th">ย้ายเว็บเก่าให้ฟรี</span><span class="en">Free website migration</span></h4>
+        <p><span class="th">มีเว็บอยู่แล้วที่อื่น ทีมเทคนิคเราย้ายมาให้ฟรี คุณไม่ต้องลงมือทำเองเลย</span><span class="en">Already have a site elsewhere? Our technical team moves it over for free. You do nothing.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h4>พร้อมออนไลน์ใน 7 วัน</h4>
-        <p>เริ่มใช้งานได้เร็ว ไม่ต้องรอเป็นเดือน ทีมเราติดตั้งและตรวจให้เรียบร้อยก่อนส่งมอบ</p>
+        <h4><span class="th">พร้อมออนไลน์ใน 7 วัน</span><span class="en">Live in 7 days</span></h4>
+        <p><span class="th">เริ่มใช้งานได้เร็ว ไม่ต้องรอเป็นเดือน เราติดตั้งและตรวจให้เรียบร้อยก่อนส่งมอบ</span><span class="en">No waiting for weeks. We set everything up and test it before handing it over.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"/><path d="M12 3v18M3 9h18M3 15h18"/></svg></div>
-        <h4>โดเมน + DNS จัดให้</h4>
-        <p>เรื่องชื่อเว็บและการตั้งค่า DNS ที่หลายคนงง เราจัดการให้เสร็จ ไม่ต้องยุ่งเอง</p>
+        <h4><span class="th">โดเมน + DNS จัดให้</span><span class="en">Domain + DNS handled</span></h4>
+        <p><span class="th">เรื่องชื่อเว็บและการตั้งค่า DNS ที่หลายคนงง เราจัดการให้เสร็จ ไม่ต้องยุ่งเอง</span><span class="en">Domain names and DNS settings, the parts most people find confusing, are set up for you.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21V10l9-6 9 6v11"/><path d="M9 21v-6h6v6"/></svg></div>
-        <h4>ข้อมูลอยู่ในไทย</h4>
-        <p>เก็บใน Data Center ในประเทศ เปิดเว็บได้ไวขึ้นสำหรับคนไทย และเป็นไปตาม PDPA</p>
+        <h4><span class="th">ข้อมูลอยู่ในไทย</span><span class="en">Data stays in Thailand</span></h4>
+        <p><span class="th">เก็บใน Data Center ในประเทศ เปิดเว็บได้ไวขึ้นสำหรับคนไทย และเป็นไปตาม PDPA</span><span class="en">Hosted in a domestic data center for faster local access, and aligned with PDPA.</span></p>
       </div>
       <div class="inc reveal">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h4>ซัพพอร์ตภาษาไทย</h4>
-        <p>โทรหาหรือทักหาได้ คุยกับทีมคนไทยที่เข้าใจงานคุณ ไม่ใช่การเปิด ticket ภาษาอังกฤษ</p>
+        <h4><span class="th">ซัพพอร์ตภาษาไทย</span><span class="en">Thai-language support</span></h4>
+        <p><span class="th">โทรหาหรือทักหาได้ คุยกับทีมคนไทยที่เข้าใจงานคุณ ไม่ใช่การเปิด ticket ภาษาอังกฤษ</span><span class="en">Call or message a local team that understands your business, not an English-only ticket queue.</span></p>
       </div>
     </div>
   </div>
@@ -335,67 +341,151 @@
 <section class="sec" id="packages">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <div class="eyebrow">เลือกแพ็กที่ใช่</div>
-      <h2 class="title">เว็บของคุณเป็นแบบไหน เลือกจากตรงนั้น</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto">ไม่ต้องรู้เรื่อง vCPU หรือ RAM แค่บอกว่าเว็บของคุณคืออะไร แล้วเลือกกล่องที่ตรงกับคุณที่สุด</p>
+      <div class="eyebrow"><span class="th">เลือกแพ็กที่ใช่</span><span class="en">Choose your fit</span></div>
+      <h2 class="title"><span class="th">เว็บของคุณเป็นแบบไหน เลือกจากตรงนั้น</span><span class="en">What kind of site is it? Start there.</span></h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto"><span class="th">ไม่ต้องรู้เรื่อง vCPU หรือ RAM แค่บอกว่าเว็บของคุณคืออะไร แล้วกด “ดูสเปกและตัวเลือกขนาด” ถ้าอยากเห็นรายละเอียด</span><span class="en">No need to know vCPU or RAM. Just pick the type that matches, then open “Specs & size options” if you want the detail.</span></p>
     </div>
 
     <div class="pk-grid">
-      <!-- Personal -->
+      <!-- PERSONAL -->
       <div class="pk reveal">
         <div class="pk-name">Personal</div>
-        <div class="pk-for">เว็บส่วนตัว บล็อก แลนดิ้งเพจ หรือร้านเล็กๆ</div>
-        <div class="price"><span class="cur">฿</span><span class="num">299</span><span class="per">/เดือน*</span></div>
-        <ul>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> 1 เว็บ พร้อมติดตั้ง WordPress ให้</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> เหมาะกับคนเพิ่งเริ่มมีเว็บ</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ได้ของครบชุดเหมือนทุกแพ็ก</li>
+        <div class="pk-for"><span class="th">เว็บส่วนตัว บล็อก แลนดิ้งเพจ หรือร้านเล็กๆ</span><span class="en">Personal site, blog, landing page or small shop</span></div>
+        <div class="price"><span class="cur">฿</span><span class="num">299</span><span class="per"><span class="th">/เดือน*</span><span class="en">/mo*</span></span></div>
+        <ul class="flist">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">1 เว็บ พร้อมติดตั้ง WordPress ให้</span><span class="en">1 site, WordPress installed for you</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">เหมาะกับคนเพิ่งเริ่มมีเว็บ</span><span class="en">Great for first-time site owners</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ได้ของครบชุดเหมือนทุกแพ็ก</span><span class="en">Full bundle, same as every plan</span></li>
         </ul>
-        <a href="#contact" class="btn btn-ghost">เริ่มต้นใช้งาน</a>
+        <details class="spec">
+          <summary><span><span class="th">ดูสเปกและตัวเลือกขนาด</span><span class="en">Specs &amp; size options</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <table>
+            <tr><th><span class="th">ขนาด</span><span class="en">Size</span></th><th>Starter</th><th>Growth</th></tr>
+            <tr><td>vCPU</td><td class="val">1</td><td class="val">2</td></tr>
+            <tr><td>RAM</td><td class="val">2 GB</td><td class="val">4 GB</td></tr>
+            <tr><td>SSD (ESSD)</td><td class="val">40 GB</td><td class="val">80 GB</td></tr>
+            <tr><td>Transfer</td><td class="val">3 TB</td><td class="val">4 TB</td></tr>
+            <tr><td>CDN</td><td class="val">100 GB</td><td class="val">200 GB</td></tr>
+            <tr class="prow"><td><span class="th">ราคา</span><span class="en">Price</span></td><td>฿299*</td><td>฿590*</td></tr>
+          </table>
+          <div class="win"><span class="th">รันบน Simple Application Server · ต้องการ Windows? เพิ่มค่าไลเซนส์ตามจริง</span><span class="en">Runs on Simple Application Server · Need Windows? License fee applies.</span></div>
+        </details>
+        <a href="#contact" class="btn btn-ghost"><span class="th">เริ่มต้นใช้งาน</span><span class="en">Get started</span></a>
       </div>
 
-      <!-- Business (hot) -->
+      <!-- BUSINESS -->
       <div class="pk hot reveal">
-        <div class="tag">ยอดนิยม</div>
+        <div class="tag"><span class="th">ยอดนิยม</span><span class="en">Most popular</span></div>
         <div class="pk-name">Business</div>
-        <div class="pk-for">เว็บบริษัท องค์กร หรือหลายเว็บในที่เดียว</div>
-        <div class="price"><span class="cur">฿</span><span class="num">990</span><span class="per">/เดือน*</span></div>
-        <ul>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> รองรับหลายเว็บในแพ็กเดียว</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> อีเมลธุรกิจ @ชื่อบริษัทของคุณ</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ทราฟฟิกสูงขึ้น ความปลอดภัยแน่นขึ้น</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> เหมาะกับ SME ที่อยากดูมืออาชีพ</li>
+        <div class="pk-for"><span class="th">เว็บบริษัท องค์กร หรือหลายเว็บในที่เดียว</span><span class="en">Company or organization sites, or several in one place</span></div>
+        <div class="price"><span class="cur">฿</span><span class="num">990</span><span class="per"><span class="th">/เดือน*</span><span class="en">/mo*</span></span></div>
+        <ul class="flist">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">รองรับหลายเว็บในแพ็กเดียว</span><span class="en">Multiple sites in one plan</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">อีเมลธุรกิจ @ชื่อบริษัทของคุณ</span><span class="en">Business email @yourcompany</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ทราฟฟิกสูงขึ้น ปลอดภัยแน่นขึ้น</span><span class="en">More traffic, tighter security</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">เหมาะกับ SME ที่อยากดูมืออาชีพ</span><span class="en">For SMEs that want to look professional</span></li>
         </ul>
-        <a href="#contact" class="btn btn-ghost">เลือกแพ็กนี้</a>
+        <details class="spec">
+          <summary><span><span class="th">ดูสเปกและตัวเลือกขนาด</span><span class="en">Specs &amp; size options</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <table>
+            <tr><th><span class="th">ขนาด</span><span class="en">Size</span></th><th>S</th><th>M</th><th>L</th></tr>
+            <tr><td>vCPU</td><td class="val">2</td><td class="val">2</td><td class="val">4</td></tr>
+            <tr><td>RAM</td><td class="val">4 GB</td><td class="val">8 GB</td><td class="val">16 GB</td></tr>
+            <tr><td>SSD (ESSD)</td><td class="val">80 GB</td><td class="val">160 GB</td><td class="val">320 GB</td></tr>
+            <tr><td>Transfer</td><td class="val">4 TB</td><td class="val">5 TB</td><td class="val">6 TB</td></tr>
+            <tr><td>CDN</td><td class="val">300 GB</td><td class="val">500 GB</td><td class="val">1 TB</td></tr>
+            <tr><td><span class="th">อีเมล</span><span class="en">Email</span></td><td class="val">5</td><td class="val">15</td><td class="val">30</td></tr>
+            <tr class="prow"><td><span class="th">ราคา</span><span class="en">Price</span></td><td>฿990*</td><td>฿1,590*</td><td>฿2,990*</td></tr>
+          </table>
+          <div class="win"><span class="th">รันบน ECS + ESSD · ต้องการ Windows? เพิ่มค่าไลเซนส์ตามจริง</span><span class="en">Runs on ECS + ESSD · Need Windows? License fee applies.</span></div>
+        </details>
+        <a href="#contact" class="btn btn-ghost"><span class="th">เลือกแพ็กนี้</span><span class="en">Choose this plan</span></a>
       </div>
 
-      <!-- Store -->
+      <!-- STORE -->
       <div class="pk reveal">
         <div class="pk-name">Store</div>
-        <div class="pk-for">ร้านค้าออนไลน์ e-commerce ที่ขายจริงจัง</div>
-        <div class="price"><span class="cur">฿</span><span class="num">2,990</span><span class="per">/เดือน*</span></div>
-        <ul>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> แยกฐานข้อมูลออก เว็บเร็วตอนคนเข้าเยอะ</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ขยายอัตโนมัติช่วงจัดโปร/ลดราคา</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> CDN หนักขึ้น รองรับรูปสินค้าจำนวนมาก</li>
+        <div class="pk-for"><span class="th">ร้านค้าออนไลน์ e-commerce ที่ขายจริงจัง</span><span class="en">Serious online stores and e-commerce</span></div>
+        <div class="price"><span class="cur">฿</span><span class="num">2,990</span><span class="per"><span class="th">/เดือน*</span><span class="en">/mo*</span></span></div>
+        <ul class="flist">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">แยกฐานข้อมูล เว็บเร็วตอนคนเข้าเยอะ</span><span class="en">Separate database, fast under load</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ขยายอัตโนมัติช่วงจัดโปร/ลดราคา</span><span class="en">Auto-scales during sales and promos</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">CDN หนักขึ้น รองรับรูปสินค้าเยอะ</span><span class="en">Heavier CDN for lots of product images</span></li>
         </ul>
-        <a href="#contact" class="btn btn-ghost">เลือกแพ็กนี้</a>
+        <details class="spec">
+          <summary><span><span class="th">ดูสเปกและตัวเลือกขนาด</span><span class="en">Specs &amp; size options</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <table>
+            <tr><th><span class="th">ขนาด</span><span class="en">Size</span></th><th>S</th><th>M</th><th>L</th></tr>
+            <tr><td>App Server</td><td class="val">2C / 4GB</td><td class="val">2C / 8GB</td><td class="val">4C / 16GB</td></tr>
+            <tr><td>DB Server</td><td class="val">2C / 8GB</td><td class="val">4C / 16GB</td><td class="val">8C / 32GB</td></tr>
+            <tr><td>SSD (ESSD)</td><td class="val">80 GB</td><td class="val">160 GB</td><td class="val">320 GB</td></tr>
+            <tr><td>Transfer</td><td class="val">5 TB</td><td class="val">6 TB</td><td class="val">8 TB</td></tr>
+            <tr><td>CDN</td><td class="val">1 TB</td><td class="val">2 TB</td><td class="val">3 TB</td></tr>
+            <tr><td>Auto Scaling</td><td class="val">✓</td><td class="val">✓</td><td class="val">✓</td></tr>
+            <tr class="prow"><td><span class="th">ราคา</span><span class="en">Price</span></td><td>฿2,990*</td><td>฿5,900*</td><td>฿11,900*</td></tr>
+          </table>
+          <div class="win"><span class="th">App + Database แยกเครื่อง บน ECS + RDS · C = vCPU</span><span class="en">App and database on separate ECS + RDS servers · C = vCPU</span></div>
+        </details>
+        <a href="#contact" class="btn btn-ghost"><span class="th">เลือกแพ็กนี้</span><span class="en">Choose this plan</span></a>
       </div>
 
-      <!-- Scale -->
+      <!-- SCALE -->
       <div class="pk reveal">
         <div class="pk-name">Scale</div>
-        <div class="pk-for">เว็บทราฟฟิกสูง มีเดีย หรือร้านขนาดใหญ่</div>
-        <div class="price quote"><span class="num">ราคาตามการใช้งาน</span></div>
-        <ul>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ระบบไม่ล่มแม้คนเข้าพร้อมกันมหาศาล</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ออกแบบโครงสร้างเฉพาะให้คุณ</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ทีมเทคนิค CU ดูแลให้ตลอด</li>
+        <div class="pk-for"><span class="th">เว็บทราฟฟิกสูง มีเดีย หรือร้านขนาดใหญ่</span><span class="en">High-traffic sites, media, or large stores</span></div>
+        <div class="price quote"><span class="num"><span class="th">ราคาตามการใช้งาน</span><span class="en">Usage-based</span></span></div>
+        <ul class="flist">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ระบบไม่ล่มแม้คนเข้าพร้อมกันมหาศาล</span><span class="en">Stays up under massive concurrent traffic</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ออกแบบโครงสร้างเฉพาะให้คุณ</span><span class="en">Architecture designed around you</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> <span class="th">ทีมเทคนิค CU ดูแลให้ตลอด</span><span class="en">Managed by the CU technical team</span></li>
         </ul>
-        <a href="#contact" class="btn btn-ghost">ขอใบเสนอราคา</a>
+        <details class="spec">
+          <summary><span><span class="th">ดูส่วนประกอบระบบ</span><span class="en">What's inside</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <table>
+            <tr><td><span class="th">หลายเครื่องสำรอง (HA)</span><span class="en">Multi-node HA</span></td><td class="val">✓</td></tr>
+            <tr><td>Load Balancer (SLB)</td><td class="val">✓</td></tr>
+            <tr><td><span class="th">ฐานข้อมูลสำรองคู่ (RDS HA)</span><span class="en">RDS high availability</span></td><td class="val">✓</td></tr>
+            <tr><td>Auto Scaling</td><td class="val">✓</td></tr>
+            <tr><td><span class="th">WAF / DDoS ระดับสูง</span><span class="en">Advanced WAF / DDoS</span></td><td class="val">✓</td></tr>
+            <tr class="prow"><td><span class="th">ราคา</span><span class="en">Price</span></td><td><span class="th">ขอใบเสนอราคา</span><span class="en">Quote</span></td></tr>
+          </table>
+        </details>
+        <a href="#contact" class="btn btn-ghost"><span class="th">ขอใบเสนอราคา</span><span class="en">Request a quote</span></a>
       </div>
     </div>
-    <p class="note">*ราคาโปรโมชันเริ่มต้น (ร่าง) ยังไม่รวม VAT 7% ราคาจริงยืนยันกับทีมขายก่อนสั่งซื้อ ทุกแพ็กอัปเกรดหรือขยายได้ภายหลังโดยไม่ต้องย้ายเว็บใหม่</p>
+    <p class="note"><span class="th">*ราคาโปรโมชันเริ่มต้นฉบับร่าง สเปกเป็นค่าตั้งต้น ยังไม่รวม VAT 7% ราคาจริงยืนยันกับทีมขายก่อนสั่งซื้อ ทุกแพ็กอัปเกรดหรือขยายได้ภายหลังโดยไม่ต้องย้ายเว็บใหม่ และดาต้าทรานสเฟอร์รวมมาให้แล้ว ไม่มีบิลเซอร์ไพรส์</span><span class="en">*Draft promotional starting prices, indicative specs, excluding 7% VAT. Confirm final pricing with our sales team. Every plan upgrades or scales later with no site migration, and data transfer is bundled, so no surprise bills.</span></p>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="sec" id="compare">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow"><span class="th">ทำไมคุ้มกว่า</span><span class="en">Why it's better value</span></div>
+      <h2 class="title"><span class="th">ราคาเท่ากัน แต่ของในแพ็กไม่เท่ากัน</span><span class="en">Same price, very different box</span></h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto"><span class="th">อย่าเทียบแค่ RAM กับ CPU ลองดูว่าในแพ็กมีอะไรให้บ้าง เพราะของที่เจ้าอื่นคิดเงินเพิ่ม เรารวมมาให้แล้ว</span><span class="en">Don't compare only RAM and CPU. Look at what's inside, because what others charge extra for, we include.</span></p>
+    </div>
+    <div class="cmp reveal">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="th">สิ่งที่รวมมาให้</span><span class="en">What's included</span></th>
+            <th class="col-us">CU &times; Alibaba Cloud</th>
+            <th><span class="th">โฮสติ้งทั่วไป</span><span class="en">Typical hosting</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="th">SSL (https)</span><span class="en">SSL (https)</span></td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">จ่ายเพิ่ม</span><span class="en">Extra</span></td></tr>
+          <tr><td>CDN <span class="th">(เว็บเร็ว)</span><span class="en">(speed)</span></td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">ไม่มี</span><span class="en">None</span></td></tr>
+          <tr><td>WAF + Anti-DDoS</td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">จ่ายเพิ่ม</span><span class="en">Extra</span></td></tr>
+          <tr><td><span class="th">สำรองข้อมูลทุกวัน</span><span class="en">Daily backup</span></td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">บางเจ้า</span><span class="en">Sometimes</span></td></tr>
+          <tr><td><span class="th">ย้ายเว็บเก่าให้ฟรี</span><span class="en">Free migration</span></td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">ต้องทำเอง</span><span class="en">DIY</span></td></tr>
+          <tr><td><span class="th">ซัพพอร์ตภาษาไทย</span><span class="en">Thai support</span></td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">บางเจ้า</span><span class="en">Varies</span></td></tr>
+          <tr><td><span class="th">Data Center ในไทย</span><span class="en">Data center in Thailand</span></td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">แล้วแต่เจ้า</span><span class="en">Varies</span></td></tr>
+          <tr><td><span class="th">ใบกำกับภาษีไทย + จ่ายเป็นบาท</span><span class="en">Thai tax invoice + THB billing</span></td><td class="us col-us"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></td><td class="them"><span class="th">แล้วแต่เจ้า</span><span class="en">Varies</span></td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -403,16 +493,16 @@
 <section class="sec" id="addons">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">เพิ่มได้ตามต้องการ</div>
-      <h2 class="title">อยากได้มากกว่านั้น เสริมได้ทีหลัง</h2>
-      <p class="lead">เริ่มจากแพ็กที่ใช่ก่อน แล้วค่อยเพิ่มของเสริมเมื่อธุรกิจโตขึ้น ไม่ต้องจ่ายเผื่อตั้งแต่วันแรก</p>
+      <div class="eyebrow"><span class="th">เพิ่มได้ตามต้องการ</span><span class="en">Optional add-ons</span></div>
+      <h2 class="title"><span class="th">อยากได้มากกว่านั้น เสริมได้ทีหลัง</span><span class="en">Want more? Add it later.</span></h2>
+      <p class="lead"><span class="th">เริ่มจากแพ็กที่ใช่ก่อน แล้วค่อยเพิ่มของเสริมเมื่อธุรกิจโตขึ้น ไม่ต้องจ่ายเผื่อตั้งแต่วันแรก</span><span class="en">Start with the plan that fits, then add extras as you grow. No paying upfront for things you don't need yet.</span></p>
     </div>
     <div class="addon-row">
-      <div class="addon star reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.3 5.6L20 9l-4 3.9.9 5.6L12 16l-4.9 2.5.9-5.6L4 9l5.7-.4z"/></svg></span> ผู้ช่วย AI บนเว็บ (Qwen) <span class="badge">เฉพาะ Alibaba</span></div>
-      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span> เพิ่มกล่องอีเมลธุรกิจ</div>
-      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></span> Control Panel (Plesk) จัดการเอง</div>
-      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg></span> เพิ่ม CDN / ทราฟฟิก</div>
-      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span> ให้เราดูแลให้ทั้งหมด (Managed)</div>
+      <div class="addon star reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.3 5.6L20 9l-4 3.9.9 5.6L12 16l-4.9 2.5.9-5.6L4 9l5.7-.4z"/></svg></span> <span class="th">ผู้ช่วย AI บนเว็บ (Qwen)</span><span class="en">On-site AI assistant (Qwen)</span> <span class="badge"><span class="th">เฉพาะ Alibaba</span><span class="en">Alibaba only</span></span></div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span> <span class="th">เพิ่มกล่องอีเมลธุรกิจ</span><span class="en">More business email</span></div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></span> <span class="th">Control Panel (Plesk)</span><span class="en">Control panel (Plesk)</span></div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg></span> <span class="th">เพิ่ม CDN / ทราฟฟิก</span><span class="en">More CDN / traffic</span></div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span> <span class="th">ให้เราดูแลให้ทั้งหมด (Managed)</span><span class="en">Fully managed by us</span></div>
     </div>
   </div>
 </section>
@@ -421,29 +511,29 @@
 <section class="sec" id="why">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <div class="eyebrow">เหตุผลที่ธุรกิจไทยเลือกเรา</div>
-      <h2 class="title">ทำไม Alibaba Cloud กับ Computer Union</h2>
+      <div class="eyebrow"><span class="th">เหตุผลที่ธุรกิจไทยเลือกเรา</span><span class="en">Why Thai businesses choose us</span></div>
+      <h2 class="title"><span class="th">ทำไม Alibaba Cloud กับ Computer Union</span><span class="en">Why Alibaba Cloud with Computer Union</span></h2>
     </div>
     <div class="why-grid">
       <div class="why reveal">
         <div class="n">01</div>
-        <h4>ข้อมูลอยู่ในไทย</h4>
-        <p>Alibaba Cloud มี Data Center ในประเทศไทย เว็บของคุณเปิดได้ไวสำหรับคนไทย ทำสำรองข้อมูลในประเทศได้ และเป็นไปตาม PDPA</p>
+        <h4><span class="th">ข้อมูลอยู่ในไทย</span><span class="en">Data in Thailand</span></h4>
+        <p><span class="th">Alibaba Cloud มี Data Center ในประเทศไทย เว็บเปิดได้ไวสำหรับคนไทย สำรองข้อมูลในประเทศได้ และเป็นไปตาม PDPA</span><span class="en">Alibaba Cloud runs data centers in Thailand, so sites load fast locally, back up in-country, and stay PDPA-aligned.</span></p>
       </div>
       <div class="why reveal">
         <div class="n">02</div>
-        <h4>ทีมไทยย้ายให้ฟรี</h4>
-        <p>ไม่ต้องจ้างใครมาย้ายเว็บ ทีมเทคนิคของ Computer Union ย้ายเว็บเดิมของคุณมาให้จบ พร้อมตรวจให้ใช้งานได้จริงก่อนส่งมอบ</p>
+        <h4><span class="th">ทีมไทยย้ายให้ฟรี</span><span class="en">Local team migrates free</span></h4>
+        <p><span class="th">ไม่ต้องจ้างใครมาย้ายเว็บ ทีมเทคนิคของ Computer Union ย้ายเว็บเดิมของคุณมาให้จบ พร้อมตรวจให้ใช้งานได้จริงก่อนส่งมอบ</span><span class="en">No need to hire anyone. Computer Union's technical team moves your existing site and verifies it works before handover.</span></p>
       </div>
       <div class="why reveal">
         <div class="n">03</div>
-        <h4>พร้อมใน 7 วัน</h4>
-        <p>ไม่ต้องรอนาน เราติดตั้งระบบและตั้งค่าให้เรียบร้อย คุณเริ่มใช้เว็บใหม่ได้ภายในหนึ่งสัปดาห์</p>
+        <h4><span class="th">พร้อมใน 7 วัน</span><span class="en">Live in 7 days</span></h4>
+        <p><span class="th">ไม่ต้องรอนาน เราติดตั้งระบบและตั้งค่าให้เรียบร้อย คุณเริ่มใช้เว็บใหม่ได้ภายในหนึ่งสัปดาห์</span><span class="en">No long wait. We install and configure everything so you're on your new site within a week.</span></p>
       </div>
       <div class="why reveal">
         <div class="n">04</div>
-        <h4>ผู้ช่วย AI ในตัว</h4>
-        <p>เสริม Qwen ทำแชตบอตหรือผู้ช่วยตอบลูกค้าบนหน้าเว็บได้ เป็นสิ่งที่โฮสติ้งบนคลาวด์เจ้าอื่นให้ไม่ได้</p>
+        <h4><span class="th">ผู้ช่วย AI ในตัว</span><span class="en">Built-in AI option</span></h4>
+        <p><span class="th">เสริม Qwen ทำแชตบอตหรือผู้ช่วยตอบลูกค้าบนหน้าเว็บได้ เป็นสิ่งที่โฮสติ้งบนคลาวด์เจ้าอื่นให้ไม่ได้</span><span class="en">Add Qwen to run a chatbot or customer assistant on your site, something other cloud hosts can't offer.</span></p>
       </div>
     </div>
   </div>
@@ -453,74 +543,74 @@
 <section class="sec" id="faq">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <div class="eyebrow">ยังไม่แน่ใจ</div>
-      <h2 class="title">คำถามที่พบบ่อย</h2>
+      <div class="eyebrow"><span class="th">ยังไม่แน่ใจ</span><span class="en">Still deciding</span></div>
+      <h2 class="title"><span class="th">คำถามที่พบบ่อย</span><span class="en">Frequently asked</span></h2>
     </div>
     <div class="faq-list">
-      <details class="reveal" open>
-        <summary>ผมไม่มีความรู้ด้านเทคนิคเลย ใช้ได้ไหม<span class="plus"></span></summary>
-        <p>ได้แน่นอน ทีมของเราติดตั้งและตั้งค่าเว็บให้ทั้งหมด คุณแค่บอกว่าอยากได้เว็บแบบไหน ที่เหลือปล่อยให้เราดูแล และถ้ามีอะไรสงสัยระหว่างใช้งาน ทักทีมคนไทยได้ตลอด</p>
+      <details class="faq reveal" open>
+        <summary><span><span class="th">ผมไม่มีความรู้ด้านเทคนิคเลย ใช้ได้ไหม</span><span class="en">I'm not technical at all. Can I use this?</span></span><span class="plus"></span></summary>
+        <p><span class="th">ได้แน่นอน ทีมของเราติดตั้งและตั้งค่าเว็บให้ทั้งหมด คุณแค่บอกว่าอยากได้เว็บแบบไหน ที่เหลือปล่อยให้เราดูแล และถ้ามีอะไรสงสัยระหว่างใช้งาน ทักทีมคนไทยได้ตลอด</span><span class="en">Absolutely. Our team installs and configures everything. Just tell us what you want, and we handle the rest. If anything comes up, our local team is a message away.</span></p>
       </details>
-      <details class="reveal">
-        <summary>ย้ายเว็บจากที่เดิมยุ่งยากไหม<span class="plus"></span></summary>
-        <p>ไม่ต้องทำเอง ทีม Computer Union ย้ายให้ฟรี และเว็บเดิมของคุณยังเปิดใช้งานได้ตามปกติจนกว่าเราจะย้ายเสร็จและพร้อมสลับมาใช้ตัวใหม่ ลูกค้าของคุณจะไม่รู้สึกว่าเว็บสะดุด</p>
+      <details class="faq reveal">
+        <summary><span><span class="th">ย้ายเว็บจากที่เดิมยุ่งยากไหม</span><span class="en">Is moving my existing site a hassle?</span></span><span class="plus"></span></summary>
+        <p><span class="th">ไม่ต้องทำเอง ทีม Computer Union ย้ายให้ฟรี และเว็บเดิมของคุณยังเปิดใช้งานได้ตามปกติจนกว่าเราจะย้ายเสร็จและพร้อมสลับมาใช้ตัวใหม่ ลูกค้าของคุณจะไม่รู้สึกว่าเว็บสะดุด</span><span class="en">You don't lift a finger. We migrate it for free, and your current site keeps running until the new one is ready to switch over, so your visitors never see downtime.</span></p>
       </details>
-      <details class="reveal">
-        <summary>ข้อมูลปลอดภัยและอยู่ที่ไหน<span class="plus"></span></summary>
-        <p>ข้อมูลเก็บอยู่ใน Data Center ในประเทศไทย มีทั้ง SSL ระบบกันการโจมตี (WAF และ Anti-DDoS) และการสำรองข้อมูลทุกวันให้ในตัว เป็นไปตามข้อกำหนด PDPA</p>
+      <details class="faq reveal">
+        <summary><span><span class="th">ข้อมูลปลอดภัยและอยู่ที่ไหน</span><span class="en">Is my data safe, and where is it?</span></span><span class="plus"></span></summary>
+        <p><span class="th">ข้อมูลเก็บอยู่ใน Data Center ในประเทศไทย มีทั้ง SSL ระบบกันการโจมตี (WAF และ Anti-DDoS) และการสำรองข้อมูลทุกวันให้ในตัว เป็นไปตามข้อกำหนด PDPA</span><span class="en">Your data is held in a Thailand data center, with SSL, attack protection (WAF and Anti-DDoS) and daily backups included, aligned with PDPA.</span></p>
       </details>
-      <details class="reveal">
-        <summary>ถ้าเว็บโตขึ้นหรือคนเข้าเยอะขึ้น ต้องทำยังไง<span class="plus"></span></summary>
-        <p>อัปเกรดแพ็กหรือขยายระบบได้ทันทีโดยไม่ต้องย้ายเว็บใหม่ เริ่มจากแพ็กเล็กก่อนได้ แล้วค่อยขยับขึ้นเมื่อธุรกิจโต ทีมเราช่วยแนะนำจังหวะที่ควรอัปให้</p>
+      <details class="faq reveal">
+        <summary><span><span class="th">ถ้าเว็บโตขึ้นหรือคนเข้าเยอะขึ้น ต้องทำยังไง</span><span class="en">What if my site grows or traffic spikes?</span></span><span class="plus"></span></summary>
+        <p><span class="th">อัปเกรดแพ็กหรือขยายระบบได้ทันทีโดยไม่ต้องย้ายเว็บใหม่ เริ่มจากแพ็กเล็กก่อนได้ แล้วค่อยขยับขึ้นเมื่อธุรกิจโต ทีมเราช่วยแนะนำจังหวะที่ควรอัปให้</span><span class="en">You can upgrade or scale instantly with no re-migration. Start small and move up as you grow, and our team advises you on the right time to do it.</span></p>
       </details>
-      <details class="reveal">
-        <summary>จ่ายเงินยังไง มีใบกำกับภาษีไหม<span class="plus"></span></summary>
-        <p>ชำระเป็นเงินบาท และออกใบกำกับภาษีแบบเต็มรูปให้ครบตามระบบบัญชีของบริษัทไทย ไม่ต้องกังวลเรื่องอัตราแลกเปลี่ยนหรือบัตรต่างประเทศ</p>
+      <details class="faq reveal">
+        <summary><span><span class="th">จ่ายเงินยังไง มีใบกำกับภาษีไหม</span><span class="en">How do I pay, and is there a tax invoice?</span></span><span class="plus"></span></summary>
+        <p><span class="th">ชำระเป็นเงินบาท และออกใบกำกับภาษีแบบเต็มรูปให้ครบตามระบบบัญชีของบริษัทไทย ไม่ต้องกังวลเรื่องอัตราแลกเปลี่ยนหรือบัตรต่างประเทศ</span><span class="en">You pay in Thai baht and receive a full tax invoice for your company's accounting, with no foreign-exchange or overseas-card worries.</span></p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- CTA BAND -->
+<!-- CTA -->
 <section class="cta-band" id="contact">
   <div class="wrap reveal">
-    <h2>พร้อมเปิดเว็บของคุณแล้วหรือยัง</h2>
-    <p>ปรึกษาฟรี ให้เราช่วยเลือกแพ็กที่ใช่ และย้ายเว็บให้คุณโดยไม่มีค่าใช้จ่าย</p>
-    <a href="#" class="btn btn-light">ติดต่อทีมขาย Computer Union</a>
+    <h2><span class="th">พร้อมเปิดเว็บของคุณแล้วหรือยัง</span><span class="en">Ready to launch your site?</span></h2>
+    <p><span class="th">ปรึกษาฟรี ให้เราช่วยเลือกแพ็กที่ใช่ และย้ายเว็บให้คุณโดยไม่มีค่าใช้จ่าย</span><span class="en">Free consultation. We'll help you pick the right plan and migrate your site at no cost.</span></p>
+    <a href="#" class="btn btn-light"><span class="th">ติดต่อทีมขาย Computer Union</span><span class="en">Talk to the Computer Union team</span></a>
     <div class="contact-row">
-      <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/></svg> [เบอร์ฝ่ายขาย]</span>
-      <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> [อีเมลฝ่ายขาย]</span>
+      <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/></svg> [<span class="th">เบอร์ฝ่ายขาย</span><span class="en">Sales phone</span>]</span>
+      <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> [<span class="th">อีเมลฝ่ายขาย</span><span class="en">Sales email</span>]</span>
       <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> [LINE Official]</span>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="wrap foot">
     <div class="brand">
       <div class="mark">CU</div>
-      <div class="who">Computer Union<small>Authorized Alibaba Cloud Distributor · Thailand</small></div>
+      <div class="who">Computer Union<small>Authorized Alibaba Cloud Distributor &middot; Thailand</small></div>
     </div>
-    <div class="fine">ราคาที่แสดงเป็นราคาโปรโมชันเริ่มต้นฉบับร่างเพื่อการนำเสนอ ยังไม่รวมภาษีมูลค่าเพิ่ม และอยู่ระหว่างการยืนยันขั้นสุดท้าย · Alibaba Cloud และเครื่องหมายการค้าที่เกี่ยวข้องเป็นของ Alibaba Cloud</div>
+    <div class="fine"><span class="th">ราคาที่แสดงเป็นราคาโปรโมชันเริ่มต้นฉบับร่างเพื่อการนำเสนอ ยังไม่รวมภาษีมูลค่าเพิ่ม และอยู่ระหว่างการยืนยันขั้นสุดท้าย · Alibaba Cloud และเครื่องหมายการค้าที่เกี่ยวข้องเป็นของ Alibaba Cloud</span><span class="en">Prices shown are draft promotional starting prices for presentation, excluding VAT and pending final confirmation. Alibaba Cloud and related marks belong to Alibaba Cloud.</span></div>
   </div>
 </footer>
 
 <script>
-  // mobile menu
-  var mb = document.getElementById('menuBtn');
-  var nl = document.getElementById('navlinks');
-  if(mb){ mb.addEventListener('click', function(){ nl.classList.toggle('open'); }); }
-  nl && nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ nl.classList.remove('open'); }); });
+  var mb=document.getElementById('menuBtn'),nl=document.getElementById('navlinks');
+  if(mb){mb.addEventListener('click',function(){nl.classList.toggle('open');});}
+  if(nl){nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');});});}
 
-  // scroll reveal
-  var els = document.querySelectorAll('.reveal');
+  var lang=document.getElementById('lang');
+  if(lang){lang.addEventListener('click',function(){
+    document.body.classList.toggle('lang-en');
+    document.documentElement.lang=document.body.classList.contains('lang-en')?'en':'th';
+  });}
+
+  var els=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
-    }, {threshold:.12});
-    els.forEach(function(el){ io.observe(el); });
-  } else { els.forEach(function(el){ el.classList.add('vis'); }); }
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.12});
+    els.forEach(function(el){io.observe(el);});
+  }else{els.forEach(function(el){el.classList.add('vis');});}
 </script>
 </body>
 </html>
