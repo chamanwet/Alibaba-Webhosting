@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เว็บโฮสติ้งบน Alibaba Cloud | Computer Union</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#FF6A00;          /* Alibaba Cloud orange */
+    --brand-strong:#E85D00;
+    --brand-soft:#FFF1E6;
+    --ink:#0E1B2E;            /* deep trust navy */
+    --ink-soft:#26374F;
+    --bg:#F3F6FA;             /* cool cloud light */
+    --surface:#FFFFFF;
+    --muted:#63707F;
+    --line:#E4E9F0;
+    --ok:#12A166;            /* included checks */
+    --shadow:0 18px 45px -20px rgba(14,27,46,.28);
+    --shadow-sm:0 8px 24px -14px rgba(14,27,46,.30);
+    --r:18px;
+    --disp:'Prompt',system-ui,'Sarabun',sans-serif;
+    --body:'Sarabun',system-ui,'Noto Sans Thai',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);color:var(--ink);background:var(--bg);
+    line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  .wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 22px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+
+  .eyebrow{
+    font-family:var(--disp);font-weight:600;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--brand-strong);margin-bottom:14px;
+  }
+  h2.title{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3.6vw,40px);line-height:1.18;letter-spacing:-.01em}
+  .lead{color:var(--ink-soft);font-size:17px;max-width:620px;margin-top:14px}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:600;
+    font-size:15px;padding:13px 24px;border-radius:999px;border:1px solid transparent;
+    cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  }
+  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 10px 26px -10px rgba(255,106,0,.7)}
+  .btn-primary:hover{background:var(--brand-strong);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line);background:#fff}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-light{background:#fff;color:var(--brand-strong)}
+  .btn-light:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(243,246,250,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),#FF9A45);display:grid;place-items:center;color:#fff;font-family:var(--disp);font-weight:700;font-size:17px}
+  .brand .who{font-family:var(--disp);font-weight:600;font-size:16px;line-height:1.1}
+  .brand .who small{display:block;font-family:var(--body);font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.02em}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a{font-size:14.5px;color:var(--ink-soft);font-weight:500}
+  .nav-links a:hover{color:var(--brand-strong)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;border-radius:2px}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:72px 0 60px}
+  .hero::before{content:"";position:absolute;top:-120px;right:-160px;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle at center,rgba(255,106,0,.16),transparent 62%);z-index:0}
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .hero .kicker{display:inline-flex;align-items:center;gap:8px;background:var(--brand-soft);color:var(--brand-strong);
+    font-family:var(--disp);font-weight:600;font-size:13px;padding:7px 14px;border-radius:999px;margin-bottom:20px}
+  .hero .kicker b{width:7px;height:7px;border-radius:50%;background:var(--brand)}
+  .hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(32px,4.6vw,52px);line-height:1.1;letter-spacing:-.015em}
+  .hero p.sub{font-size:18px;color:var(--ink-soft);margin-top:20px;max-width:540px}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .trust{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:34px}
+  .trust span{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink-soft);font-weight:500}
+  .trust svg{color:var(--ok);flex:none}
+
+  /* hero visual: everything-in-one-pack card */
+  .packbox{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow);transform:rotate(-1.4deg)}
+  .packbox h3{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--ink);margin-bottom:4px}
+  .packbox .cap{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+  .chip-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .chip{display:flex;align-items:center;gap:10px;background:#F7F9FC;border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+  .chip .ic{width:30px;height:30px;border-radius:8px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;flex:none}
+  .chip small{font-size:13px;font-weight:600;color:var(--ink-soft);line-height:1.25}
+  .float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);
+    display:flex;align-items:center;gap:9px;padding:10px 14px;font-family:var(--disp);font-weight:600;font-size:13.5px}
+  .float.a{top:-22px;right:16px;color:var(--ok)}
+  .float.b{bottom:-20px;left:-14px;color:var(--brand-strong)}
+  .float .dot{width:9px;height:9px;border-radius:50%;background:currentColor}
+
+  /* ---------- generic section ---------- */
+  section.sec{padding:84px 0}
+  .sec-head{max-width:680px}
+  .sec-head.center{margin:0 auto;text-align:center}
+
+  /* ---------- included ---------- */
+  #included{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  .inc{background:#F7F9FC;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .inc .ic{width:44px;height:44px;border-radius:12px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;margin-bottom:15px}
+  .inc h4{font-family:var(--disp);font-weight:600;font-size:16.5px;margin-bottom:6px}
+  .inc p{font-size:14.5px;color:var(--muted);line-height:1.55}
+
+  /* ---------- packages ---------- */
+  .pk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px;align-items:stretch}
+  .pk{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+    border-radius:20px;padding:26px 22px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease}
+  .pk:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .pk.hot{border:2px solid var(--brand);box-shadow:0 24px 50px -22px rgba(255,106,0,.45)}
+  .pk .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;
+    font-family:var(--disp);font-weight:600;font-size:12px;padding:6px 15px;border-radius:999px;white-space:nowrap}
+  .pk .pk-name{font-family:var(--disp);font-weight:700;font-size:21px}
+  .pk .pk-for{font-size:13.5px;color:var(--muted);margin-top:5px;min-height:40px}
+  .pk .price{margin:18px 0 4px;display:flex;align-items:baseline;gap:4px}
+  .pk .price .num{font-family:var(--disp);font-weight:700;font-size:32px;color:var(--ink)}
+  .pk .price .cur{font-family:var(--disp);font-weight:600;font-size:17px;color:var(--ink)}
+  .pk .price .per{font-size:13px;color:var(--muted)}
+  .pk .price.quote .num{font-size:22px}
+  .pk ul{list-style:none;margin:18px 0 22px;display:flex;flex-direction:column;gap:11px;flex:1}
+  .pk ul li{display:flex;gap:9px;font-size:14px;color:var(--ink-soft);line-height:1.45}
+  .pk ul li svg{color:var(--ok);flex:none;margin-top:3px}
+  .pk .btn{width:100%;justify-content:center}
+  .pk.hot .btn-ghost{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .pk.hot .btn-ghost:hover{background:var(--brand-strong)}
+  .note{font-size:12.5px;color:var(--muted);margin-top:22px;text-align:center}
+
+  /* ---------- addons ---------- */
+  #addons{background:var(--ink);color:#fff}
+  #addons .eyebrow{color:#FFB27A}
+  #addons h2.title{color:#fff}
+  #addons .lead{color:#B9C6D6}
+  .addon-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+  .addon{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:14px;padding:14px 18px;font-size:14.5px;font-weight:500}
+  .addon .ic{width:32px;height:32px;border-radius:9px;background:rgba(255,106,0,.2);color:#FFB27A;display:grid;place-items:center;flex:none}
+  .addon.star{background:rgba(255,106,0,.16);border-color:rgba(255,106,0,.5)}
+  .addon.star .badge{font-family:var(--disp);font-size:11px;font-weight:600;background:var(--brand);color:#fff;padding:2px 8px;border-radius:999px;margin-left:2px}
+
+  /* ---------- why ---------- */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px}
+  .why{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px}
+  .why .n{font-family:var(--disp);font-weight:700;font-size:15px;color:var(--brand-strong);letter-spacing:.05em}
+  .why h4{font-family:var(--disp);font-weight:600;font-size:18px;margin:14px 0 8px}
+  .why p{font-size:14.5px;color:var(--muted);line-height:1.6}
+
+  /* ---------- faq ---------- */
+  #faq{background:var(--surface);border-top:1px solid var(--line)}
+  .faq-list{max-width:800px;margin:40px auto 0}
+  details{border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin-bottom:12px;background:#F9FBFD}
+  details[open]{background:#fff;border-color:#D9E0EA}
+  summary{list-style:none;cursor:pointer;font-family:var(--disp);font-weight:600;font-size:16px;padding:16px 0;
+    display:flex;justify-content:space-between;align-items:center;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary .plus{width:24px;height:24px;flex:none;position:relative;transition:transform .2s ease}
+  summary .plus::before,summary .plus::after{content:"";position:absolute;background:var(--brand);border-radius:2px}
+  summary .plus::before{width:14px;height:2px;top:11px;left:5px}
+  summary .plus::after{width:2px;height:14px;top:5px;left:11px}
+  details[open] summary .plus{transform:rotate(45deg)}
+  details p{padding:0 0 18px;color:var(--ink-soft);font-size:15px;line-height:1.65}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{background:linear-gradient(120deg,var(--brand),#FF9440);color:#fff;text-align:center;padding:70px 0}
+  .cta-band h2{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3.4vw,38px)}
+  .cta-band p{font-size:17px;margin-top:12px;opacity:.95}
+  .cta-band .btn{margin-top:26px}
+  .contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin-top:28px;font-size:14.5px;font-weight:500}
+  .contact-row span{display:inline-flex;align-items:center;gap:8px;opacity:.96}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:#9FB0C2;padding:40px 0 34px;font-size:13.5px}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:center}
+  .foot .brand .who{color:#fff}
+  .foot .brand .who small{color:#8394A8}
+  .foot .fine{max-width:560px;line-height:1.6}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.vis{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:960px){
+    .hero .wrap{grid-template-columns:1fr;gap:44px}
+    .inc-grid{grid-template-columns:1fr 1fr}
+    .pk-grid{grid-template-columns:1fr 1fr}
+    .why-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    .nav-links{display:none}
+    .nav-cta .btn-ghost{display:none}
+    .menu-btn{display:block}
+    .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;
+      background:#fff;border-bottom:1px solid var(--line);padding:8px 22px 16px}
+    .nav-links.open a{padding:12px 0;border-bottom:1px solid var(--line)}
+    section.sec{padding:60px 0}
+    .inc-grid,.pk-grid,.why-grid{grid-template-columns:1fr}
+    .packbox{transform:none}
+    .float.b{left:6px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <div class="mark">CU</div>
+      <div class="who">Computer Union<small>พันธมิตรผู้ให้บริการ Alibaba Cloud</small></div>
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#included">มีอะไรให้บ้าง</a>
+      <a href="#packages">แพ็กเกจ</a>
+      <a href="#why">ทำไมต้องเรา</a>
+      <a href="#faq">คำถามที่พบบ่อย</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#packages" class="btn btn-ghost">ดูแพ็กเกจ</a>
+      <a href="#contact" class="btn btn-primary">ปรึกษาฟรี</a>
+      <button class="menu-btn" id="menuBtn" aria-label="เมนู"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="kicker"><b></b> เว็บโฮสติ้งบน Alibaba Cloud โดย Computer Union</span>
+      <h1>เปิดเว็บของคุณ<br>แล้วปล่อยเรื่องยากให้เราดูแล</h1>
+      <p class="sub">เลือกแพ็กที่ใช่ จ่ายค่าโฮสอย่างเดียว ที่เหลือทั้งความเร็ว ความปลอดภัย และการย้ายเว็บ ทีม Computer Union จัดให้ครบ ข้อมูลอยู่ใน Data Center ในไทย พร้อมออนไลน์ใน 7 วัน</p>
+      <div class="cta-row">
+        <a href="#packages" class="btn btn-primary">ดูแพ็กเกจทั้งหมด</a>
+        <a href="#contact" class="btn btn-ghost">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</a>
+      </div>
+      <div class="trust">
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> Data Center ในไทย</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> รองรับ PDPA</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ออกใบกำกับภาษี</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ซัพพอร์ตภาษาไทย</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> การันตี uptime 99.9%</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="packbox">
+        <div class="float a"><span class="dot"></span> https ปลอดภัย</div>
+        <div class="float b"><span class="dot"></span> uptime 99.9%</div>
+        <h3>ในทุกแพ็ก มีให้ครบ</h3>
+        <p class="cap">ไม่ต้องซื้อเพิ่มทีละอย่าง</p>
+        <div class="chip-grid">
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><small>ฟรี SSL (https)</small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></span><small>CDN เว็บโหลดไว</small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg></span><small>WAF + Anti-DDoS</small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></span><small>สำรองข้อมูลทุกวัน</small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h12M12 6l6 6-6 6"/><path d="M20 4v16"/></svg></span><small>ย้ายเว็บให้ฟรี</small></div>
+          <div class="chip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><small>ซัพพอร์ตไทย</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="sec" id="included">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">ครบในแพ็กเดียว</div>
+      <h2 class="title">จ่ายค่าโฮสอย่างเดียว ที่เหลือเราจัดให้ครบ</h2>
+      <p class="lead">โฮสติ้งทั่วไปให้คุณแค่เครื่องเปล่า แล้วค่อยคิดเงินเพิ่มทีละอย่าง ของเรารวมทุกอย่างที่เว็บหนึ่งเว็บต้องใช้จริงมาให้ในราคาเดียว</p>
+    </div>
+    <div class="inc-grid">
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h4>ฟรี SSL (https)</h4>
+        <p>เว็บขึ้นกุญแจ https ให้ลูกค้าเชื่อใจตั้งแต่เปิดหน้าแรก ไม่ต้องซื้อใบรับรองเพิ่ม</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></div>
+        <h4>CDN เว็บโหลดไว</h4>
+        <p>กระจายเว็บไว้หลายจุด ลูกค้าไม่ว่าอยู่ที่ไหนก็เปิดหน้าเว็บได้เร็ว ไม่ต้องรอโหลด</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg></div>
+        <h4>WAF + Anti-DDoS</h4>
+        <p>มีระบบกันแฮกเกอร์และการโจมตีถล่มเว็บให้ในตัว เว็บไม่ล่มง่ายและปลอดภัยกว่า</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></div>
+        <h4>สำรองข้อมูลอัตโนมัติ</h4>
+        <p>ระบบสำรองข้อมูลให้ทุกวันโดยอัตโนมัติ ถ้าเว็บมีปัญหาก็กู้คืนกลับมาได้</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 12h12M12 6l6 6-6 6"/><path d="M20 4v16"/></svg></div>
+        <h4>ย้ายเว็บเก่าให้ฟรี</h4>
+        <p>มีเว็บอยู่แล้วที่อื่น ทีมเทคนิคเราย้ายมาให้ฟรี คุณไม่ต้องลงมือทำเองเลย</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h4>พร้อมออนไลน์ใน 7 วัน</h4>
+        <p>เริ่มใช้งานได้เร็ว ไม่ต้องรอเป็นเดือน ทีมเราติดตั้งและตรวจให้เรียบร้อยก่อนส่งมอบ</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"/><path d="M12 3v18M3 9h18M3 15h18"/></svg></div>
+        <h4>โดเมน + DNS จัดให้</h4>
+        <p>เรื่องชื่อเว็บและการตั้งค่า DNS ที่หลายคนงง เราจัดการให้เสร็จ ไม่ต้องยุ่งเอง</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 21V10l9-6 9 6v11"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h4>ข้อมูลอยู่ในไทย</h4>
+        <p>เก็บใน Data Center ในประเทศ เปิดเว็บได้ไวขึ้นสำหรับคนไทย และเป็นไปตาม PDPA</p>
+      </div>
+      <div class="inc reveal">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>ซัพพอร์ตภาษาไทย</h4>
+        <p>โทรหาหรือทักหาได้ คุยกับทีมคนไทยที่เข้าใจงานคุณ ไม่ใช่การเปิด ticket ภาษาอังกฤษ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow">เลือกแพ็กที่ใช่</div>
+      <h2 class="title">เว็บของคุณเป็นแบบไหน เลือกจากตรงนั้น</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">ไม่ต้องรู้เรื่อง vCPU หรือ RAM แค่บอกว่าเว็บของคุณคืออะไร แล้วเลือกกล่องที่ตรงกับคุณที่สุด</p>
+    </div>
+
+    <div class="pk-grid">
+      <!-- Personal -->
+      <div class="pk reveal">
+        <div class="pk-name">Personal</div>
+        <div class="pk-for">เว็บส่วนตัว บล็อก แลนดิ้งเพจ หรือร้านเล็กๆ</div>
+        <div class="price"><span class="cur">฿</span><span class="num">299</span><span class="per">/เดือน*</span></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> 1 เว็บ พร้อมติดตั้ง WordPress ให้</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> เหมาะกับคนเพิ่งเริ่มมีเว็บ</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ได้ของครบชุดเหมือนทุกแพ็ก</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">เริ่มต้นใช้งาน</a>
+      </div>
+
+      <!-- Business (hot) -->
+      <div class="pk hot reveal">
+        <div class="tag">ยอดนิยม</div>
+        <div class="pk-name">Business</div>
+        <div class="pk-for">เว็บบริษัท องค์กร หรือหลายเว็บในที่เดียว</div>
+        <div class="price"><span class="cur">฿</span><span class="num">990</span><span class="per">/เดือน*</span></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> รองรับหลายเว็บในแพ็กเดียว</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> อีเมลธุรกิจ @ชื่อบริษัทของคุณ</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ทราฟฟิกสูงขึ้น ความปลอดภัยแน่นขึ้น</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> เหมาะกับ SME ที่อยากดูมืออาชีพ</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">เลือกแพ็กนี้</a>
+      </div>
+
+      <!-- Store -->
+      <div class="pk reveal">
+        <div class="pk-name">Store</div>
+        <div class="pk-for">ร้านค้าออนไลน์ e-commerce ที่ขายจริงจัง</div>
+        <div class="price"><span class="cur">฿</span><span class="num">2,990</span><span class="per">/เดือน*</span></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> แยกฐานข้อมูลออก เว็บเร็วตอนคนเข้าเยอะ</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ขยายอัตโนมัติช่วงจัดโปร/ลดราคา</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> CDN หนักขึ้น รองรับรูปสินค้าจำนวนมาก</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">เลือกแพ็กนี้</a>
+      </div>
+
+      <!-- Scale -->
+      <div class="pk reveal">
+        <div class="pk-name">Scale</div>
+        <div class="pk-for">เว็บทราฟฟิกสูง มีเดีย หรือร้านขนาดใหญ่</div>
+        <div class="price quote"><span class="num">ราคาตามการใช้งาน</span></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ระบบไม่ล่มแม้คนเข้าพร้อมกันมหาศาล</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ออกแบบโครงสร้างเฉพาะให้คุณ</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg> ทีมเทคนิค CU ดูแลให้ตลอด</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">ขอใบเสนอราคา</a>
+      </div>
+    </div>
+    <p class="note">*ราคาโปรโมชันเริ่มต้น (ร่าง) ยังไม่รวม VAT 7% ราคาจริงยืนยันกับทีมขายก่อนสั่งซื้อ ทุกแพ็กอัปเกรดหรือขยายได้ภายหลังโดยไม่ต้องย้ายเว็บใหม่</p>
+  </div>
+</section>
+
+<!-- ADDONS -->
+<section class="sec" id="addons">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">เพิ่มได้ตามต้องการ</div>
+      <h2 class="title">อยากได้มากกว่านั้น เสริมได้ทีหลัง</h2>
+      <p class="lead">เริ่มจากแพ็กที่ใช่ก่อน แล้วค่อยเพิ่มของเสริมเมื่อธุรกิจโตขึ้น ไม่ต้องจ่ายเผื่อตั้งแต่วันแรก</p>
+    </div>
+    <div class="addon-row">
+      <div class="addon star reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.3 5.6L20 9l-4 3.9.9 5.6L12 16l-4.9 2.5.9-5.6L4 9l5.7-.4z"/></svg></span> ผู้ช่วย AI บนเว็บ (Qwen) <span class="badge">เฉพาะ Alibaba</span></div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span> เพิ่มกล่องอีเมลธุรกิจ</div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></span> Control Panel (Plesk) จัดการเอง</div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg></span> เพิ่ม CDN / ทราฟฟิก</div>
+      <div class="addon reveal"><span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span> ให้เราดูแลให้ทั้งหมด (Managed)</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow">เหตุผลที่ธุรกิจไทยเลือกเรา</div>
+      <h2 class="title">ทำไม Alibaba Cloud กับ Computer Union</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why reveal">
+        <div class="n">01</div>
+        <h4>ข้อมูลอยู่ในไทย</h4>
+        <p>Alibaba Cloud มี Data Center ในประเทศไทย เว็บของคุณเปิดได้ไวสำหรับคนไทย ทำสำรองข้อมูลในประเทศได้ และเป็นไปตาม PDPA</p>
+      </div>
+      <div class="why reveal">
+        <div class="n">02</div>
+        <h4>ทีมไทยย้ายให้ฟรี</h4>
+        <p>ไม่ต้องจ้างใครมาย้ายเว็บ ทีมเทคนิคของ Computer Union ย้ายเว็บเดิมของคุณมาให้จบ พร้อมตรวจให้ใช้งานได้จริงก่อนส่งมอบ</p>
+      </div>
+      <div class="why reveal">
+        <div class="n">03</div>
+        <h4>พร้อมใน 7 วัน</h4>
+        <p>ไม่ต้องรอนาน เราติดตั้งระบบและตั้งค่าให้เรียบร้อย คุณเริ่มใช้เว็บใหม่ได้ภายในหนึ่งสัปดาห์</p>
+      </div>
+      <div class="why reveal">
+        <div class="n">04</div>
+        <h4>ผู้ช่วย AI ในตัว</h4>
+        <p>เสริม Qwen ทำแชตบอตหรือผู้ช่วยตอบลูกค้าบนหน้าเว็บได้ เป็นสิ่งที่โฮสติ้งบนคลาวด์เจ้าอื่นให้ไม่ได้</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow">ยังไม่แน่ใจ</div>
+      <h2 class="title">คำถามที่พบบ่อย</h2>
+    </div>
+    <div class="faq-list">
+      <details class="reveal" open>
+        <summary>ผมไม่มีความรู้ด้านเทคนิคเลย ใช้ได้ไหม<span class="plus"></span></summary>
+        <p>ได้แน่นอน ทีมของเราติดตั้งและตั้งค่าเว็บให้ทั้งหมด คุณแค่บอกว่าอยากได้เว็บแบบไหน ที่เหลือปล่อยให้เราดูแล และถ้ามีอะไรสงสัยระหว่างใช้งาน ทักทีมคนไทยได้ตลอด</p>
+      </details>
+      <details class="reveal">
+        <summary>ย้ายเว็บจากที่เดิมยุ่งยากไหม<span class="plus"></span></summary>
+        <p>ไม่ต้องทำเอง ทีม Computer Union ย้ายให้ฟรี และเว็บเดิมของคุณยังเปิดใช้งานได้ตามปกติจนกว่าเราจะย้ายเสร็จและพร้อมสลับมาใช้ตัวใหม่ ลูกค้าของคุณจะไม่รู้สึกว่าเว็บสะดุด</p>
+      </details>
+      <details class="reveal">
+        <summary>ข้อมูลปลอดภัยและอยู่ที่ไหน<span class="plus"></span></summary>
+        <p>ข้อมูลเก็บอยู่ใน Data Center ในประเทศไทย มีทั้ง SSL ระบบกันการโจมตี (WAF และ Anti-DDoS) และการสำรองข้อมูลทุกวันให้ในตัว เป็นไปตามข้อกำหนด PDPA</p>
+      </details>
+      <details class="reveal">
+        <summary>ถ้าเว็บโตขึ้นหรือคนเข้าเยอะขึ้น ต้องทำยังไง<span class="plus"></span></summary>
+        <p>อัปเกรดแพ็กหรือขยายระบบได้ทันทีโดยไม่ต้องย้ายเว็บใหม่ เริ่มจากแพ็กเล็กก่อนได้ แล้วค่อยขยับขึ้นเมื่อธุรกิจโต ทีมเราช่วยแนะนำจังหวะที่ควรอัปให้</p>
+      </details>
+      <details class="reveal">
+        <summary>จ่ายเงินยังไง มีใบกำกับภาษีไหม<span class="plus"></span></summary>
+        <p>ชำระเป็นเงินบาท และออกใบกำกับภาษีแบบเต็มรูปให้ครบตามระบบบัญชีของบริษัทไทย ไม่ต้องกังวลเรื่องอัตราแลกเปลี่ยนหรือบัตรต่างประเทศ</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band" id="contact">
+  <div class="wrap reveal">
+    <h2>พร้อมเปิดเว็บของคุณแล้วหรือยัง</h2>
+    <p>ปรึกษาฟรี ให้เราช่วยเลือกแพ็กที่ใช่ และย้ายเว็บให้คุณโดยไม่มีค่าใช้จ่าย</p>
+    <a href="#" class="btn btn-light">ติดต่อทีมขาย Computer Union</a>
+    <div class="contact-row">
+      <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/></svg> [เบอร์ฝ่ายขาย]</span>
+      <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> [อีเมลฝ่ายขาย]</span>
+      <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> [LINE Official]</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <div class="mark">CU</div>
+      <div class="who">Computer Union<small>Authorized Alibaba Cloud Distributor · Thailand</small></div>
+    </div>
+    <div class="fine">ราคาที่แสดงเป็นราคาโปรโมชันเริ่มต้นฉบับร่างเพื่อการนำเสนอ ยังไม่รวมภาษีมูลค่าเพิ่ม และอยู่ระหว่างการยืนยันขั้นสุดท้าย · Alibaba Cloud และเครื่องหมายการค้าที่เกี่ยวข้องเป็นของ Alibaba Cloud</div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  var mb = document.getElementById('menuBtn');
+  var nl = document.getElementById('navlinks');
+  if(mb){ mb.addEventListener('click', function(){ nl.classList.toggle('open'); }); }
+  nl && nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ nl.classList.remove('open'); }); });
+
+  // scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
+    }, {threshold:.12});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('vis'); }); }
+</script>
+</body>
+</html>
